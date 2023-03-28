@@ -4,6 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class NetworkUI : NetworkBehaviour
 {
@@ -12,6 +13,8 @@ public class NetworkUI : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI playerCountText;
 
     private NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
+    [SerializeField] private InputAction starHost;
+    [SerializeField] private InputAction startClient;
 
     private void Awake()
     {
@@ -24,6 +27,18 @@ public class NetworkUI : NetworkBehaviour
         {
             NetworkManager.Singleton.StartClient();
         });
+        starHost.Enable();
+        startClient.Enable();
+        startClient.started -= startHost => NetworkManager.Singleton.StartHost();
+        startClient.started += startClient => NetworkManager.Singleton.StartClient();
+    }
+
+    private void OnDisable()
+    {
+        starHost.started -= startHost => NetworkManager.Singleton.StartHost();
+        startClient.started -= startClient => NetworkManager.Singleton.StartClient();
+        //starHost.Disable();
+        //startClient.Disable();
     }
 
     private void Update()
