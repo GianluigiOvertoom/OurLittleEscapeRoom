@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.XR;
 
+
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
+
 /// <summary>
 /// C# translation from http://answers.unity3d.com/questions/155907/basic-movement-walking-on-walls.html
 /// Author: UA @aldonaletto 
