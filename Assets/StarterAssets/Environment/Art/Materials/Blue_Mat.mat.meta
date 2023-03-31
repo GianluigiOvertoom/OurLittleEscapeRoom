@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Football (the one with hands).mat.meta
+guid: 6ce1664ec37f5fe44a44de03b3f6b06b
+========
 guid: 979aef027a1c86c42a15ce35fce366fa
+>>>>>>>> 7a0b4d6a2d44d164668706c66b6a195d36233402:Assets/StarterAssets/Environment/Art/Materials/Blue_Mat.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
