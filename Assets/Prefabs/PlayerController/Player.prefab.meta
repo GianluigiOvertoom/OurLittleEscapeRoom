@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/PlayerController/Player.prefab.meta
 guid: 12a75f3ba952f9c40808c93881ccfcd3
+========
+guid: 81eb8a07f64251845bbe5c9a2ef66920
+>>>>>>>> 7a0b4d6a2d44d164668706c66b6a195d36233402:Assets/Samples/OpenXR Plugin/1.4.2/Controller/Prefabs/Controller.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
