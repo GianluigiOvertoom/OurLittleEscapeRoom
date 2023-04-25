@@ -15,7 +15,9 @@ using UnityEngine.XR;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-    [SerializeField] private Camera _camera; // Player camera
+    private Camera _camera; // player camera
+    private AudioListener _audioListener; // audio controller
+    private float SpawnPositionRange = 5f; // spawn range
 
     private float moveSpeed = 6; // move speed
     private float turnSpeed = 90; // turning speed (degrees/second)
@@ -44,11 +46,15 @@ public class NetworkPlayer : NetworkBehaviour
         GetComponent<Rigidbody>().freezeRotation = true; // disable physics rotation
                                                          // distance from transform.position to ground
         distGround = boxCollider.size.y - boxCollider.center.y;
+
+        transform.position = new Vector3(Random.Range(SpawnPositionRange, -SpawnPositionRange), 0, Random.Range(SpawnPositionRange, -SpawnPositionRange)); //set the spawn position
         
         _camera = GetComponentInChildren<Camera>(); //only activates the camera of the player that ownes the object
+        _audioListener = GetComponentInChildren<AudioListener>();
         if (IsOwner) 
         {
             _camera.enabled = true;
+            _audioListener.enabled = true;
         }
     }
 
