@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.XR;
+using System.Threading.Tasks;
 
 /// <summary>
 /// C# translation from http://answers.unity3d.com/questions/155907/basic-movement-walking-on-walls.html
@@ -17,7 +18,9 @@ public class NetworkPlayer : NetworkBehaviour
 {
     private Camera _camera; // player camera
     private AudioListener _audioListener; // audio controller
-    private float SpawnPositionRange = 5f; // spawn range
+    private float spawnPositionRange = 5f; // spawn range
+    private bool _disableMovement = true;
+    private int _delayTimer = 5000; // Delay movement until other player's spawned in
     [SerializeField] private Animator animator; //DEBUG network animator
     [SerializeField] private GameObject _model; // DEBUG
     private float moveSpeed = 6; // move speed
@@ -48,7 +51,7 @@ public class NetworkPlayer : NetworkBehaviour
                                                          // distance from transform.position to ground
         distGround = boxCollider.size.y - boxCollider.center.y;
 
-        transform.position = new Vector3(Random.Range(SpawnPositionRange, -SpawnPositionRange), 0, Random.Range(SpawnPositionRange, -SpawnPositionRange)); //set the spawn position
+        transform.position = new Vector3(Random.Range(spawnPositionRange, -spawnPositionRange), 10f, Random.Range(spawnPositionRange, -spawnPositionRange)); //set the spawn position
         
         _camera = GetComponentInChildren<Camera>(); //only activates the camera of the player that ownes the object
         _audioListener = GetComponentInChildren<AudioListener>();
@@ -58,6 +61,15 @@ public class NetworkPlayer : NetworkBehaviour
             _audioListener.enabled = true;
             _model.SetActive(false);
         }
+
+        DelayMovement();
+    }
+
+    private async void DelayMovement()
+    {
+        _disableMovement = true;
+        await Task.Delay(_delayTimer);
+        _disableMovement = false;
     }
 
     private void FixedUpdate()
@@ -117,9 +129,12 @@ public class NetworkPlayer : NetworkBehaviour
         Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
         myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
         // move the character forth/back with Vertical axis:
-        float currentSpeed = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        myTransform.Translate(0, 0, currentSpeed);
-        animator.SetFloat("MoveSpeed", Mathf.Abs(currentSpeed));
+        if (!_disableMovement)
+        {
+            float currentSpeed = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+            myTransform.Translate(0, 0, currentSpeed);
+            animator.SetFloat("MoveSpeed", Mathf.Abs(currentSpeed));
+        }
     }
 
     private void JumpToWall(Vector3 point, Vector3 normal)
