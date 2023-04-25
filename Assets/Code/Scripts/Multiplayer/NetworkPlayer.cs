@@ -18,7 +18,8 @@ public class NetworkPlayer : NetworkBehaviour
     private Camera _camera; // player camera
     private AudioListener _audioListener; // audio controller
     private float SpawnPositionRange = 5f; // spawn range
-
+    [SerializeField] private Animator animator; //DEBUG network animator
+    [SerializeField] private GameObject _model; // DEBUG
     private float moveSpeed = 6; // move speed
     private float turnSpeed = 90; // turning speed (degrees/second)
     private float lerpSpeed = 10; // smoothing speed
@@ -55,6 +56,7 @@ public class NetworkPlayer : NetworkBehaviour
         {
             _camera.enabled = true;
             _audioListener.enabled = true;
+            _model.SetActive(false);
         }
     }
 
@@ -115,7 +117,9 @@ public class NetworkPlayer : NetworkBehaviour
         Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
         myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
         // move the character forth/back with Vertical axis:
-        myTransform.Translate(0, 0, Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
+        float currentSpeed = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        myTransform.Translate(0, 0, currentSpeed);
+        animator.SetFloat("MoveSpeed", Mathf.Abs(currentSpeed));
     }
 
     private void JumpToWall(Vector3 point, Vector3 normal)
