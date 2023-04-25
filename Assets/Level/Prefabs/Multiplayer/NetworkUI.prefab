@@ -860,6 +860,24 @@ MonoBehaviour:
   hostButton: {fileID: 8733854134290361674}
   clientButton: {fileID: 8733854135567307566}
   playerCountText: {fileID: 8733854133895371492}
+  starHost:
+    m_Name: Star Host
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 05f884c0-1f87-4967-bad4-ad6106d4be59
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  startClient:
+    m_Name: Start Client
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e1b3fee8-5e2d-4f44-9084-5885aee275ff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &8733854134982398356
 MonoBehaviour:
   m_ObjectHideFlags: 0
