@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Open_Door_Collision : MonoBehaviour
 {
+    // Creates variables that are not editable outside of this file, except for the animator
     public Animator animator;
     [SerializeField] private Collider Door_plate;
     [SerializeField] private int Keys_present = 0;
@@ -14,13 +15,28 @@ public class Open_Door_Collision : MonoBehaviour
     void Start() {
         Door_plate = GetComponent<Collider>();
     }
-    void OnTriggerEnter(Collider other) { // copy paste for door close, use: OnTriggerExit
+    // checks to see if enough keys have been collected
+    void OnTriggerEnter(Collider other) { 
         if (other.transform.CompareTag(Key_tag)) {
             Keys_present++;
             if (Keys_present >= 7) OpenDoor();
         }
     }
-    void OpenDoor() { // copy paste for door close, use: void closeDoor
+    // calls the animation to open the door
+    void OpenDoor() { 
         animator.SetBool(A_OpenDoor, true);
+        Debug.Log(A_OpenDoor);
+    }
+    // checks to see if any keys have been removed
+    void OnTriggerExit(Collider other) { 
+        if (other.transform.CompareTag(Key_tag))
+        {
+            Keys_present--;
+            if (Keys_present < 7) CloseDoor();
+        }
+    }
+    // calls the animation to close the door
+    void CloseDoor() {
+        animator.SetBool(A_OpenDoor, false);
     }
 }
