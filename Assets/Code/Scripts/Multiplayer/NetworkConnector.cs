@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Threading.Tasks;
 
-public class NetworkConnector : MonoBehaviour
+public class NetworkConnector : NetworkBehaviour
 {
     private NetworkManager _networkManager;
     private void Awake()
