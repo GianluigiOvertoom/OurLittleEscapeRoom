@@ -4606,7 +4606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 454311504}
   Door_plate: {fileID: 0}
-  Keys_present: 0
+  keysPresent: 0
 --- !u!65 &2049253155
 BoxCollider:
   m_ObjectHideFlags: 0
