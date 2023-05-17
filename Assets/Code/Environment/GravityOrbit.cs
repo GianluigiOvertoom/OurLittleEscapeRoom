@@ -9,7 +9,7 @@ public class GravityOrbit : MonoBehaviour
     public bool FixedDirection;
     public LayerMask m_LayerMask;
     [SerializeField] private BoxCollider Box;
-    //[SerializeField] private GameObject Reference;
+    [SerializeField] private GameObject Reference;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class GravityOrbit : MonoBehaviour
 
     private void MyCollisions()
     {
-        Collider[] hitColliders = Physics.OverlapBox(Box.transform.position, transform.localScale, Quaternion.identity, m_LayerMask);
+        Collider[] hitColliders = Physics.OverlapBox(Box.transform.position, Reference.transform.localScale, Reference.transform.rotation, m_LayerMask);
         //Check when there is a new collider coming into contact with the box
         if (hitColliders.Length > 0)
         {
@@ -48,9 +48,11 @@ public class GravityOrbit : MonoBehaviour
        if (m_Started)
         {
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(Box.transform.position, Box.size);
+            Gizmos.DrawWireCube(Box.transform.position, Reference.transform.localScale);
         }
 
     }
 
 }
+//new Quaternion(Reference.transform.rotation.x, Reference.transform.rotation.y, Reference.transform.rotation.z, Reference.transform.rotation.w)
+//Reference.transform.rotation
