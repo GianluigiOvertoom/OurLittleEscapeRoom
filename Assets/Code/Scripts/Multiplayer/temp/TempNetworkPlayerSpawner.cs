@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class TempNetworkPlayerSpawner : MonoBehaviourPunCallbacks
+public class TempNetworkPlayerSpawner : MonoBehaviour
 {
-    private GameObject spawnedPlayerPrefab;
-
-    public override void OnJoinedRoom()
+    // Start is called before the first frame update
+    void Start()
     {
-        base.OnJoinedRoom();
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate("TempNetworkPlayer", transform.position, transform.rotation);
+        
     }
 
-    public override void OnLeftRoom()
+    // Update is called once per frame
+    void Update()
     {
-        base.OnLeftRoom();
-        PhotonNetwork.Destroy(spawnedPlayerPrefab);
+        
     }
 }
