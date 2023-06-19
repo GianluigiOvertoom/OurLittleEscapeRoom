@@ -30,7 +30,7 @@ public class WallWalk : MonoBehaviour
     private Vector3 myNormal; // character normal
     private float distGround; // distance from character position to ground
     private bool jumping = false; // flag &quot;I'm jumping to wall&quot;
-    //private float vertSpeed = 0; // vertical jump current speed
+    private float vertSpeed = 0; // vertical jump current speed
 
     private Transform myTransform;
     public BoxCollider boxCollider; // drag BoxCollider ref in editor
