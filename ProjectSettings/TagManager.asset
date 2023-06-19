@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Left Hand
   - Right Hand
-  - CinemachineTarget
+  - Left Hand
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -14,7 +14,7 @@ TagManager:
   - Gravity
   - Water
   - UI
-  - Player
+  - 
   - 
   - 
   - 

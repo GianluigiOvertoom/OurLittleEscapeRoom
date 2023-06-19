@@ -135,11 +135,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 11400000, guid: b4ebfd4bfc00624458ed96b5e6f9c90a, type: 2}
-  - {fileID: 1993091910832146020, guid: ca127195db2287a4ab315dd1ff45d3fb, type: 2}
-  - {fileID: -7381518391802563046, guid: 7eaebb65f827beb4ca218a4677e8fed9, type: 2}
-  - {fileID: 11400000, guid: ff027b55dafa6734ea9ccb08d11ccdc4, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -792,13 +788,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 0
-    Collab: 0
-    Game Performance: 0
-    Purchasing: 0
-    UDP: 0
     UNet: 1
-    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -813,11 +803,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: b7ad7e80-b7b9-4cf8-a5d7-f3f0230cc48a
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: OurLittleEscapeRoom
-  organizationId: firedream2236
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
