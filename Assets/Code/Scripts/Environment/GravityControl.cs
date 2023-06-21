@@ -16,7 +16,7 @@ public class GravityControl : MonoBehaviour
     }
 
     // the objects reaction to gravity
-    void Update()
+    void FixedUpdate()
     {
         if (Gravity)
         {
@@ -27,7 +27,7 @@ public class GravityControl : MonoBehaviour
             Vector3 localUp = transform.up;
 
             Quaternion targetrotation = Quaternion.FromToRotation(localUp, gravityUp) * transform.rotation;
-            transform.up = Vector3.Lerp(transform.up, gravityUp, rotationSpeed * Time.deltaTime);
+            transform.up = Vector3.Lerp(transform.up, gravityUp, rotationSpeed);
             // force
             Rb.AddForce((-gravityUp * Gravity.Gravity) * Rb.mass);
         }

@@ -7,8 +7,6 @@ public class Ballcounter : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text _title;
-
-    public PointScoring Hoop;
     
     public int BallAmount;
     public int BallCheck;
@@ -21,7 +19,7 @@ public class Ballcounter : MonoBehaviour
 
     private void Update()
     {
-        BallAmount = Hoop.Score;
+        BallAmount = PointScoring.Score;
 
         if (BallAmount != BallCheck)
         {
