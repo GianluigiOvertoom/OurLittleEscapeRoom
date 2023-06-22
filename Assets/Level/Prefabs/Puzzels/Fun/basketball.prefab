@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 6383325833223049669}
   - component: {fileID: 6383325833223049668}
   - component: {fileID: 6383325833223049667}
-  - component: {fileID: 6383325833223049666}
+  - component: {fileID: 5655099060419711374}
   - component: {fileID: 6722492904434357477}
   - component: {fileID: 5865289226545594554}
+  - component: {fileID: 8472828972796828246}
+  - component: {fileID: 4803752697508479070}
   m_Layer: 3
   m_Name: basketball
   m_TagString: Untagged
@@ -146,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceSound: {fileID: 8300000, guid: 177abd5c4947e9b48ad53158fee70f68, type: 3}
---- !u!114 &6383325833223049666
+--- !u!114 &5655099060419711374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6077406312610180246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d26421d8af69d043ae65253331ac9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: aecfc599b72c8b44aba7a2c94c1cda73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -295,8 +297,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  leftAttachTransform: {fileID: 0}
-  rightAttachTransform: {fileID: 0}
 --- !u!114 &6722492904434357477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,3 +406,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8472828972796828246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077406312610180246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 4803752697508479070}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4803752697508479070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077406312610180246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
