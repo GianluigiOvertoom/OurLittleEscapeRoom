@@ -18,7 +18,7 @@ public class ScoringTrigger : MonoBehaviour
         MyCollisions();
     }
 
-
+    // takes the size of the boxcollider, and checks if anything moves in contact with it, if so, checks if it is the correct object, and if so again, adds 1 to the score and removes the interacting game object
     private void MyCollisions()
     {
         Collider[] hitColliders = Physics.OverlapBox(Box.transform.position, Box.transform.localScale, Box.transform.rotation, m_LayerMask);

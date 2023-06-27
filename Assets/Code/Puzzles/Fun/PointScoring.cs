@@ -9,21 +9,24 @@ public class PointScoring : MonoBehaviour
     public int Score = 0;
     public int MaxScore;
 
-    // Start is called before the first frame update
+    // reset the score
     void Start()
     {
         Score = 0;
     }
+
+    // so points can be added to the score
     public void AddScore(int NewScore)
     {
         Score += NewScore;
     }
 
+    // sets up the text for the ui
     public void UpdatScore()
     {
         ScoreText.text = "Balls collected: " + Score;
     }
-    // Update is called once per frame
+    // Update the score
     void Update()
     {
         UpdatScore();
