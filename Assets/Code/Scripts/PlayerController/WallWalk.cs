@@ -43,9 +43,7 @@ public class WallWalk : MonoBehaviour
     [SerializeField] private Transform networkLHand;
     [SerializeField] private Transform networkRHand;
     [SerializeField] private GameObject GUI;
-    private Transform networkHeadRig;
-    private Transform networkLHandRig;
-    private Transform networkRHandRig;
+    [SerializeField] private Camera _camera;
 
 
     private void Start()
@@ -56,14 +54,6 @@ public class WallWalk : MonoBehaviour
                                                          // distance from transform.position to ground
         distGround = boxCollider.size.y - boxCollider.center.y;
         photonView = GetComponent<PhotonView>();
-        XRRig rig = FindAnyObjectByType<XRRig>();
-        networkHeadRig = rig.transform.Find("Camera Offset/VR Camera");
-        networkLHandRig = rig.transform.Find("Camera Offset/Left Hand");
-        networkRHandRig = rig.transform.Find("Camera Offset/Right Hand");
-        if (!photonView.IsMine)
-        {
-            GUI.SetActive(false);
-        }
     }
 
     private void FixedUpdate()
@@ -79,10 +69,12 @@ public class WallWalk : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            GUI.SetActive(true);
+            _camera.enabled = true;
             //Make your own body invisible for yourself
             networkHead.gameObject.SetActive(false);
-            networkLHand.gameObject.SetActive(false);
-            networkRHand.gameObject.SetActive(false);
+            /*networkLHand.gameObject.SetActive(false);
+            networkRHand.gameObject.SetActive(false);*/
 
             InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
             device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
@@ -131,10 +123,14 @@ public class WallWalk : MonoBehaviour
             // move the character forth/back with Vertical axis:
             myTransform.Translate(0, 0, Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
 
-            //Sync tranform of network body parts
-            MapPosition(networkHead, networkHeadRig);
-            MapPosition(networkLHand, networkLHandRig);
-            MapPosition(networkRHand, networkRHandRig);
+            /*            //Sync tranform of network body parts
+                        MapPosition(networkLHand, XRNode.LeftHand);
+                        MapPosition(networkRHand, XRNode.RightHand);*/
+        }
+        else 
+        {
+            networkLHand.gameObject.SetActive(false);
+            networkRHand.gameObject.SetActive(false);
         }
     }
 
@@ -168,10 +164,12 @@ public class WallWalk : MonoBehaviour
 
     }
 
-    private void MapPosition(Transform target, Transform rigTransform)
+    private void MapPosition(Transform target, XRNode node)
     {
-        target.position = rigTransform.position;
-        target.rotation = rigTransform.rotation;
+        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position);
+        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation);
+        target.position = position;
+        target.rotation = rotation;
     }
 
 }
